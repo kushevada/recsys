@@ -1,0 +1,79 @@
+body {
+    margin: 0;
+    background: #71D6EA;
+    position: relative;
+}
+@font-face {
+    font-family: 'Inter';
+    src: url(../assets/Inter/Inter-Italic-VariableFont_opsz\,wght.ttf);
+}
+#heading {
+    z-index: 2;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 200px;
+    background: #A7F3F2;
+    box-shadow: 0px 2px 50px rgba(0, 0, 0, 0.3);
+}
+#heading span {
+    font-family: 'Inter', sans-serif;
+    font-style: italic;
+    font-weight: bold;
+    font-size: 96;
+    color: #0F8EC1;
+    -webkit-text-stroke: 10px #65FFF2;
+    paint-order: stroke fill;
+}
+#body {
+    width: 100%;
+    height: 100%;
+}
+.navbar {
+    z-index: 2;
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding-top: 25px;
+}
+.nav-button {
+    font-family: 'Inter', sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    font-style: italic;
+    color: #0F8EC1;
+    background: #65FFF2;
+    border: none;
+    border-radius: 10px;
+    padding: 20px 77px;
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
+    cursor: pointer;
+    box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.3);
+    transition: background 0.3s ease;
+}
+.auth-button {
+    font-family: 'Inter', sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    font-style: italic;
+    color: #0F8EC1;
+    background: #65FFF2;
+    border: none;
+    border-radius: 10px;
+    padding: 0px 50px;
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
+    cursor: pointer;
+    box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.3);
+    transition: background 0.3s ease;
+}
+.auth-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.nav-button:hover, .auth-button:hover {
+    background: #4FD9F6;
+}

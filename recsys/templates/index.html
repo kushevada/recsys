@@ -1,0 +1,51 @@
+{% load static %}
+
+<html lang="ru">
+
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Good Food</title>
+        <link rel="icon" type="image" href="{% static 'assets/favicon.ico' %}">
+        <link rel="stylesheet" href="{% static 'styles/base.css' %}">
+        <link rel="stylesheet" href="{% static 'styles/index.css' %}">
+    </head>
+
+    <body>
+        
+        <div id="heading">
+            <span>Good Food</span>
+        </div>
+
+        <div id="body">
+            <div class="navbar">
+                <button class="nav-button">Главная</button>
+                <button class="nav-button">Каталог</button>
+                <button class="nav-button">Для вас</button>
+
+                <div class="auth-buttons">
+                    <button class="auth-button">Вход</button>
+                    <button class="auth-button">Регистрация</button>
+                </div>
+
+            </div>
+
+            <div class="main-info">
+                <div>
+                    <p class="h1text">Разнообразие еды</p>
+                    <p class="text">Больше не придётся есть одно и тоже. В нашем каталоге вы найдете множество продуктов на самый разный вкус!</p>
+                </div>
+                <div>
+
+                </div>
+            </div>
+
+            <div id="index-image">
+                <img src="{% static 'assets/home_page.png' %}" alt="">
+            </div>
+
+        </div>
+
+    </body>
+
+</html>
