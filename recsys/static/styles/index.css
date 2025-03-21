@@ -3,6 +3,17 @@
     src: url(../assets/Inter/Inter-Italic-VariableFont_opsz\,wght.ttf);
 }
 
+.nav-button--circle {
+    content: "";
+    width: 15px;
+    height: 15px;
+    background-color: #00FF00;
+    border-radius: 50%;
+    position: absolute;
+    top: 10%;
+    left: -20px;
+}
+
 #index-image {
     position: absolute;
     top: 200px;
@@ -29,6 +40,10 @@
     border-radius: 10px;
     box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.3);
 }
+.info1-img {
+    height: 50px;
+    width: 50px;
+}
 .main-info2 {
     display: flex;
     flex-direction: column;
@@ -41,7 +56,10 @@
     width: 400px;
     border-radius: 10px;
     box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.3);
-
+}
+.info2-img {
+    height: 70px;
+    width: auto;
 }
 .h1text {
     font-family: 'Inter', sans-serif;

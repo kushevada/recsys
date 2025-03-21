@@ -19,7 +19,7 @@
 
         <div id="body">
             <div class="navbar">
-                <a href="{% url 'index' %}" class="nav-button">Главная</a>
+                <a href="{% url 'index' %}" class="nav-button">Главная<div class="nav-button--circle"></div></a>
                 <a href="{% url 'catalog' %}" class="nav-button">Каталог</a>
                 <a href="#" class="nav-button">Для вас</a>
 
@@ -31,11 +31,11 @@
             </div>
 
             <div class="main-info1">
-                <p class="h1text">Разнообразие еды</p>
+                <p class="h1text"><img class="info1-img" src="{% static 'assets/icon.png' %}" alt="">Разнообразие еды</p>
                 <p class="text">Больше не придётся есть одно и тоже. В нашем каталоге вы найдете множество продуктов на самый разный вкус!</p>
             </div>
             <div class="main-info2">
-                <p class="h1text">Больше никаких неработающих диет!</p>
+                <p class="h1text"><img class="info2-img" src="{% static 'assets/lifestyle.png' %}" alt="">Больше никаких неработающих диет!</p>
                 <p class="text">Только здоровое и вкусное питание!</p>
             </div>
 

@@ -53,7 +53,8 @@ body {
     cursor: pointer;
     box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.3);
     transition: background 0.3s ease;
-    text-decoration: none
+    text-decoration: none;
+    position: relative;
 }
 .auth-button {
     font-family: 'Inter', sans-serif;
@@ -69,7 +70,7 @@ body {
     cursor: pointer;
     box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.3);
     transition: background 0.3s ease;
-    text-decoration: none
+    text-decoration: none;
 }
 .auth-buttons {
     display: flex;

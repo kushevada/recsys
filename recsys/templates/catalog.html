@@ -8,6 +8,7 @@
         <title>Good Food</title>
         <link rel="icon" type="image" href="{% static 'assets/favicon.ico' %}">
         <link rel="stylesheet" href="{% static 'styles/base.css' %}">
+        <link rel="stylesheet" href="{% static 'styles/catalog.css' %}">
     </head>
 
     <body>
@@ -19,7 +20,7 @@
         <div id="body">
             <div class="navbar">
                 <a href="{% url 'index' %}" class="nav-button">Главная</a>
-                <a href="{% url 'catalog' %}" class="nav-button">Каталог</a>
+                <a href="{% url 'catalog' %}" class="nav-button">Каталог<div class="nav-button--circle"></div></a>
                 <a href="#" class="nav-button">Для вас</a>
 
                 <div class="auth-buttons">
@@ -29,7 +30,61 @@
 
             </div>
 
-            
+            <script src="{% static 'utils/catalog.js' %}"></script>
+            <div class="catalog-content">
+                <div class="catalog-navbar">
+                    <button data-target="#meat" class="product-button">Мясо и птица</button>
+                    <button data-target="#fish" class="product-button">Рыба</button>
+                    <button data-target="#eggs" class="product-button">Яичная продукция</button>
+                    <button data-target="#milk" class="product-button">Молочная продукция</button>
+                    <button data-target="#vegetables" class="product-button">Овощи</button>
+                    <button data-target="#fruits" class="product-button">Фрукты, ягоды, сухофрукты</button>
+                    <button data-target="#fats" class="product-button">Жиры, масла</button>
+                    <button data-target="#cereals" class="product-button">Крупы, злаки</button>
+                    <button data-target="#baking" class="product-button">Мучная продукция</button>
+                    <button data-target="#drinks" class="product-button">Напитки</button>
+                </div>
+    
+                <div class="content-area">
+                    <div id="meat" class="content-block active">
+                        <div class="product-grid">
+                            <div class="product-card">
+                                
+                            </div>
+                            <div class="product-card">
+                                
+                            </div>
+                            <div class="product-card">
+                                
+                            </div>
+                            <div class="product-card">
+                                
+                            </div>
+                            <div class="product-card">
+                                
+                            </div>
+                            <div class="product-card">
+                                
+                            </div>
+                            <div class="product-card">
+                                
+                            </div>
+                            <div class="product-card">
+                                
+                            </div>
+                            <div class="product-card">
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div id="fish" class="content-block">
+                        контент рыбы
+                    </div>
+                    <div id="eggs" class="content-block">
+                        контент для яиц
+                    </div>
+                </div>
+            </div>
 
         </div>
 
