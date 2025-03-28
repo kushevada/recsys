@@ -16,12 +16,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from modulerec import views
 
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index, name='index'),
-    path('catalog/', views.catalog, name='catalog')
+    path('', include('modulerec.urls')),
+    path('auth/', include('moduleauth.urls')),
 ]
