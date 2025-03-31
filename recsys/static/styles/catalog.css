@@ -18,13 +18,12 @@
     display: flex;
 }
 .catalog-navbar {
-    position: fixed;
     display: flex;
+    margin-left: 4%;
     flex-direction: column;
     width: 21%;
     align-items: center;
     padding-top: 40px;
-    padding-left: 0%;
     gap: 20px;
 }
 .product-button {
