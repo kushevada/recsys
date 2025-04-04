@@ -15,6 +15,7 @@ class Product(models.Model):
     fats = models.FloatField(default=0)
     carbohydrates = models.FloatField(default=0)
     caloricity = models.FloatField(default=0)
+    is_fow_weight_main = models.BooleanField(default=False)
     is_for_weight_gain = models.BooleanField(default=False)
     is_for_weight_loss = models.BooleanField(default=False)
 
