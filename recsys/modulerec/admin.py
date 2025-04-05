@@ -6,7 +6,7 @@ from .models import Category, Product
 admin.site.register(Category)
 admin.site.register(Product)
 
-@admin.register(Category, Product)
-class ProductsAdmin(admin.ModelAdmin):
-    list_display = ('category', 'name', 'caloricity', 'proteins', 'fats', 'carbohydrates', 
-        'is_fow_weight_main', 'is_fow_weight_gain', 'is_fow_weight_loss')
+# @admin.register(Category, Product)
+# class ProductsAdmin(admin.ModelAdmin):
+#     list_display = ('category', 'name', 'caloricity', 'proteins', 'fats', 'carbohydrates', 
+#         'is_for_weight_main', 'is_for_weight_gain', 'is_for_weight_loss')

@@ -14,7 +14,7 @@ def Data():
     )
 
     for category_name in categories:
-        category  = Category.objects.get_or_create(name=category_name)
+        category, _ = Category.objects.get_or_create(name=category_name)
         if category.name == 'meat':
             Product.objects.get_or_create(name='Корейка свиная запеченная' ,
                 category=category, proteins = 27.23, fats = 13.62, carbohydrates = 0, caloricity = 239.0)
