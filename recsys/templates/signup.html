@@ -14,9 +14,12 @@
         
         <div class="signup-window">
             <h2>Регистрация</h2>
+
             <form method="post">
                 {% csrf_token %}
-                {% form.as_p %}
+                {{ form.as_p }}
+                <button type="submit">Продолжить</button>
+                <a href="{% url 'index' %}">Вернуться на главную страницу</a>
             </form>
         </div>
 
