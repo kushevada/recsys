@@ -1,5 +1,4 @@
 from django.test import TestCase
-
 from modulerec.models import Product, Category
 from modulerec.apps import FilterProducts
 

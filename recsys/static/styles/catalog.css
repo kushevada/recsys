@@ -7,7 +7,7 @@
     content: "";
     width: 15px;
     height: 15px;
-    background-color: #00FF00;
+    background-color: #ffd000;
     border-radius: 50%;
     position: absolute;
     top: 10%;
@@ -80,7 +80,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: calc(25% - 120px);
+    justify-content: center;
+    width: 200px;
+    height: 300px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     font-family: 'Inter', sans-serif;
     color: #0F8EC1;

@@ -1,20 +1,29 @@
 def Data():
     from modulerec.models import Category, Product
 
-    categories = (
-        'meat',
-        'fish',
-        'eggs',
-        'milk',
-        'vegetables',
-        'fruits',
-        'fats',
-        'cereals',
-        'baking',
-    )
+    if Category.objects.exists():
+        return
+    if Product.objects.exists():
+        return
 
-    for category_name in categories:
-        category, _ = Category.objects.get_or_create(name=category_name)
+    categories = {
+        'meat': 'Мясо и птица',
+        'fish': 'Рыба',
+        'eggs': 'Яичная продукция',
+        'milk': 'Молочная продукция',
+        'vegetables': 'Овощи',
+        'fruits': 'Фрукты и ягоды',
+        'fats': 'Жиры и масла',
+        'cereals': 'Крупы и злаки',
+        'baking': 'Выпечка',
+    }
+
+    for category_name, ru_name in categories.items:
+        category, created = Category.objects.get_or_create(name=category_name, defaults={'ru_name': ru_name})
+        if not created and category.ru_name != ru_name:
+            category.ru_name = ru_name
+            category.save()
+
         if category.name == 'meat':
             Product.objects.get_or_create(name='Корейка свиная запеченная' ,
                 category=category, proteins = 27.23, fats = 13.62, carbohydrates = 0, caloricity = 239.0)

@@ -1,10 +1,16 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.models import User
 from .forms import UserRegistrationForm
+from .models import Profile
 
 
 # Create your views here.
+def index(request):
+    return render(request, "index.html")
+
 def signup(request):
     return render(request, "signup.html")
 
@@ -33,8 +39,9 @@ def signin_view(request):
             return redirect('index')
     else:
         form = AuthenticationForm()
-    return render(request, 'sign_in.html', {'form': form})
+    return render(request, 'signin.html', {'form': form})
 
+@login_required
 def logout_view(request):
     logout(request)
     return redirect('index')

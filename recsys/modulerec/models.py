@@ -4,9 +4,10 @@ from django.db import models
 # Create your models here.
 class Category(models.Model):
     name = models.CharField(max_length=100)
+    ru_name = models.CharField(max_length=100, blank=True)
 
     def __str__(self):
-        return self.name
+        return self.ru_name and self.name
     
 class Product(models.Model):
     name = models.CharField(max_length=100)
@@ -18,6 +19,9 @@ class Product(models.Model):
     is_for_weight_main = models.BooleanField(default=False)
     is_for_weight_gain = models.BooleanField(default=False)
     is_for_weight_loss = models.BooleanField(default=False)
+
+    class Meta:
+        unique_together = ['name', 'category']
 
     def __str__(self):
         return self.name

@@ -7,19 +7,19 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Good Food. Sign Up</title>
         <link rel="icon" type="image" href="{% static 'assets/favicon.ico' %}">
-        <link rel="stylesheet" href="{% static 'styles/signup.css' %}">
+        <link rel="stylesheet" href="{% static 'styles/sign.css' %}">
     </head>
 
     <body>
         
-        <div class="signup-window">
+        <div class="sign-window">
             <h2>Регистрация</h2>
 
             <form method="post">
                 {% csrf_token %}
                 {{ form.as_p }}
-                <button type="submit">Продолжить</button>
-                <a href="{% url 'index' %}">Вернуться на главную страницу</a>
+                <button type="submit" class="btn">Зарегестрироваться</button>
+                <a href="{% url 'index' %}">Вернуться</a>
             </form>
         </div>
 

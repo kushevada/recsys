@@ -1,1 +1,28 @@
 {% load static %}
+
+<html lang="ru">
+
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Good Food. Sign In</title>
+        <link rel="icon" type="image" href="{% static 'assets/favicon.ico' %}">
+        <link rel="stylesheet" href="{% static 'styles/sign.css' %}">
+    </head>
+
+    <body>
+        
+        <div class="sign-window">
+            <h2>Вход</h2>
+
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn">Войти</button>
+                <a href="{% url 'index' %}">Вернуться</a>
+            </form>
+        </div>
+
+    </body>
+
+</html>

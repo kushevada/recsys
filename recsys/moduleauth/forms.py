@@ -19,11 +19,11 @@ class UserRegistrationForm(forms.ModelForm):
             raise forms.ValidationError('Пароли не совпадают.')
         return cd['password2']
 
-    def clean_username(self):
-        username = self.cleaned_data.get('username')
-        if User.objects.filter(user__iexact=username).exists():
-            raise forms.ValidationError('Пользователь с таким именем уже существует.')
-        return username
+    # def clean_username(self):
+    #     username = self.cleaned_data.get('username')
+    #     if User.objects.filter(user__iexact=username).exists():
+    #         raise forms.ValidationError('Пользователь с таким именем уже существует.')
+    #     return username
 
     def save(self, commit=True):
         user = super().save(commit=False)
@@ -33,6 +33,8 @@ class UserRegistrationForm(forms.ModelForm):
             Profile.objects.get_or_create(user=user)
         return user
     
+
+
 class UserInfoForm(forms.ModelForm):
     height = forms.IntegerField(label='Рост', required=True)
     weight = forms.IntegerField(label='Вес', required=True)

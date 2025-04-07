@@ -3,10 +3,13 @@ from .models import Category, Product
 
 
 # Register your models here.
-admin.site.register(Category)
-admin.site.register(Product)
+class ProductsAdmin(admin.ModelAdmin):
+    list_display = ('category', 'name', 'caloricity', 'proteins', 'fats', 'carbohydrates', 
+        'is_for_weight_main', 'is_for_weight_gain', 'is_for_weight_loss')
+    list_filter = ('category', 'is_for_weight_loss')
+    search_fields = ('name',)
+    
 
-# @admin.register(Category, Product)
-# class ProductsAdmin(admin.ModelAdmin):
-#     list_display = ('category', 'name', 'caloricity', 'proteins', 'fats', 'carbohydrates', 
-#         'is_for_weight_main', 'is_for_weight_gain', 'is_for_weight_loss')
+
+admin.site.register(Category)
+admin.site.register(Product, ProductsAdmin)
