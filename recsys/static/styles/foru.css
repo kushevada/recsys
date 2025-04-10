@@ -1,0 +1,18 @@
+.nav-button--circle {
+    content: "";
+    width: 15px;
+    height: 15px;
+    background-color: #ffd000;
+    border-radius: 50%;
+    position: absolute;
+    top: 10%;
+    left: -20px;
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}

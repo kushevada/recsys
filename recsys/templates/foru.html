@@ -5,10 +5,10 @@
     <head>
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Good Food</title>
+        <title>Good Food. profile</title>
         <link rel="icon" type="image" href="{% static 'assets/favicon.ico' %}">
         <link rel="stylesheet" href="{% static 'styles/base.css' %}">
-        <link rel="stylesheet" href="{% static 'styles/index.css' %}">
+        <link rel="stylesheet" href="{% static 'styles/foru.css' %}">
     </head>
 
     <body>
@@ -19,14 +19,13 @@
 
         <div id="body">
             <div class="navbar">
-                <a href="{% url 'index' %}" class="nav-button">Главная<div class="nav-button--circle"></div></a>
+                <a href="{% url 'index' %}" class="nav-button">Главная</a>
                 <a href="{% url 'catalog' %}" class="nav-button">Каталог</a>
                 {% if user.is_authenticated %}
-                    <a href="{% url 'foru' %}" class="nav-button restricted">Для вас</a>
+                    <a href="#" class="nav-button restricted">Для вас<div class="nav-button--circle"></div></a>
                 {% else %}
                     <script src="{ static 'utils/restrict.js' }"></script>
                 {% endif %}
-
                 
                 <div class="auth-buttons">
                     {% if user.is_authenticated %}
@@ -37,20 +36,15 @@
                         <a href="{% url 'signup' %}" class="auth-button">Регистрация</a>
                     {% endif %}
                 </div>
-
             </div>
 
-            <div class="main-info1">
-                <p class="h1text"><img class="info1-img" src="{% static 'assets/icon.png' %}" alt="">Разнообразие еды</p>
-                <p class="text">Больше не придётся есть одно и тоже. В нашем каталоге вы найдете множество продуктов на самый разный вкус!</p>
-            </div>
-            <div class="main-info2">
-                <p class="h1text"><img class="info2-img" src="{% static 'assets/lifestyle.png' %}" alt="">Больше никаких неработающих диет!</p>
-                <p class="text">Только здоровое и вкусное питание!</p>
-            </div>
-
-            <div id="index-image">
-                <img src="{% static 'assets/home_page.png' %}" alt="">
+            <div class="user-info">
+                {% if profile %}
+                    <p>Ваш рост: {{ profile.height }}</p>
+                    <p>Ваш вес: {{ profile.weight }}</p>
+                {% else %}
+                    <p>Пожалуйста, войдите в систему для просмотра данных профиля.</p>
+                {% endif %}
             </div>
 
         </div>
