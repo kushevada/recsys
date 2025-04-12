@@ -8,10 +8,10 @@ class Profile(models.Model):
     user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
     email = models.EmailField(unique=True, null=True, blank=True, verbose_name="Email")
     sex = models.CharField(max_length=6, choices=[('male', 'Мужской'), ('female', 'Женский')], default='male')
-    age = models.PositiveIntegerField(blank=True, default=18, verbose_name='Age' )
-    height = models.PositiveIntegerField(blank=True, default=160,verbose_name="Height")
-    weight = models.PositiveIntegerField(blank=True, default=60, verbose_name="Weight")
-    goal = models.CharField(max_length=20, choices=[('gain', 'Набор веса'), ('lose', 'Похудение')], default='maintain')
+    age = models.PositiveIntegerField(blank=True, null=True, default=18, verbose_name='Age' )
+    height = models.PositiveIntegerField(blank=True, null=True, default=160,verbose_name="Height")
+    weight = models.PositiveIntegerField(blank=True, null=True, default=60, verbose_name="Weight")
+    goal = models.CharField(max_length=20, choices=[('gain', 'Набор'), ('lose', 'Похудение'), ('main', 'Поддержание')], default='maintain')
     calorie_adjustment = models.IntegerField(default=0, verbose_name="Коррекция калорий")
 
     # расчет базового метаболизма

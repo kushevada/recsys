@@ -39,11 +39,17 @@
             </div>
 
             <div class="user-info">
-                {% if profile %}
-                    <p>Ваш рост: {{ profile.height }}</p>
-                    <p>Ваш вес: {{ profile.weight }}</p>
-                {% else %}
-                    <p>Пожалуйста, войдите в систему для просмотра данных профиля.</p>
+                {% if user.is_authenticated %}
+                    {% if user %}
+                        <p>Ваш пол: {{ user.profile.sex }}</p>
+                        <p>Ваш возраст: {{ user.profile.age }}</p>
+                        <p>Ваш рост: {{ user.profile.height }}</p>
+                        <p>Ваш вес: {{ user.profile.weight }}</p>
+                        <p>Ваша цель: {{ user.profile.goal }}</p>
+                    {% else %}
+                        <p>Заполните профиль для получения рекомендаций</p>
+                        <a href="{% url 'profile' %}" class="btn">Перейти к профилю</a>
+                    {% endif %}
                 {% endif %}
             </div>
 

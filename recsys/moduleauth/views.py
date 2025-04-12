@@ -21,6 +21,9 @@ def signin(request):
 def profile(request):
     return render(request, "profile.html")
 
+def foru(request):
+    return render(request, "foru.html")
+
 def signup_view(request):
     if request.method == 'POST':
         form = UserRegistrationForm(request.POST)
@@ -50,6 +53,7 @@ def logout_view(request):
     logout(request)
     return redirect('index')
 
+@login_required
 def profile_view(request):
     profile, created = Profile.objects.get_or_create(user=request.user)
     
@@ -62,3 +66,12 @@ def profile_view(request):
         form = UserInfoForm(instance=profile)
     
     return render(request, 'profile.html', {'form': form})
+
+@login_required
+def foru_view(request):
+    try:
+        profile = Profile.objects.get(user=request.user)
+    except Profile.DoesNotExist:
+        return redirect('profile')
+    
+    return render(request, 'foru.html', {'profile': profile})

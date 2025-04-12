@@ -42,12 +42,12 @@ class UserInfoForm(forms.ModelForm):
     age = forms.IntegerField(label='Возраст', required=True)
     height = forms.IntegerField(label='Рост', required=True)
     weight = forms.IntegerField(label='Вес', required=True)
-
-
+    goal = forms.ChoiceField(label='Цель', choices=Profile._meta.get_field('goal').choices, widget=forms.RadioSelect)
+    calorie_adjustment = forms.IntegerField(label="Коррекция калорий", required=True)
 
     class Meta:
         model = Profile
-        fields = ('sex', 'age','height', 'weight')
+        fields = ('sex', 'age','height', 'weight', 'goal', 'calorie_adjustment')
         widgets = {
             'sex': forms.ChoiceField(choices=[('male', 'Мужской'), ('female', 'Женский')]), 
             'age': forms.NumberInput(attrs={'min': 0, 'max': 120}), 
