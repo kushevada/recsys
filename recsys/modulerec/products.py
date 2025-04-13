@@ -18,7 +18,7 @@ def Data():
         'baking': 'Выпечка',
     }
 
-    for category_name, ru_name in categories.items:
+    for category_name, ru_name in categories.items():
         category, created = Category.objects.get_or_create(name=category_name, defaults={'ru_name': ru_name})
         if not created and category.ru_name != ru_name:
             category.ru_name = ru_name

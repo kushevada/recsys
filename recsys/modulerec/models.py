@@ -7,7 +7,7 @@ class Category(models.Model):
     ru_name = models.CharField(max_length=100, blank=True)
 
     def __str__(self):
-        return self.ru_name and self.name
+        return self.ru_name if self.ru_name else self.name
     
 class Product(models.Model):
     name = models.CharField(max_length=100)

@@ -1,16 +1,13 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Category, Product
 from moduleauth.models import Profile
 from django.contrib.auth.decorators import login_required
-
+from .forms import GoalForm
 
 
 # Create your views here.
 def index(request):
     return render(request, "index.html")
-
-def catalog(request):
-    return render(request, 'catalog.html')
 
 @login_required
 def foru(request):
@@ -23,8 +20,18 @@ def catalog_view(request):
 
 @login_required
 def foru_view(request):
-    profile = Profile.objects.get(user=request.user)
+    try:
+        profile = Profile.objects.get(user=request.user)
+    except Profile.DoesNotExist:
+        return redirect('profile')
+
+    form = GoalForm(request.POST or None)
     
+    if request.method == 'POST' and form.is_valid():
+        profile.goal = form.cleaned_data['goal']
+        profile.save()
+        return redirect('foru')
+
     if profile.goal == 'gain':
         products = Product.objects.filter(is_for_weight_gain=True)
     elif profile.goal == 'lose':
@@ -33,6 +40,7 @@ def foru_view(request):
         products = Product.objects.filter(is_for_weight_main=True)
     
     return render(request, 'foru.html', {
-        'profile': profile,
-        'products': products
-    })
+            'profile': profile,
+            'products': products,
+            'goal_form': form
+        })

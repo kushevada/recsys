@@ -8,11 +8,18 @@ class Profile(models.Model):
     user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
     email = models.EmailField(unique=True, null=True, blank=True, verbose_name="Email")
     sex = models.CharField(max_length=6, choices=[('male', 'Мужской'), ('female', 'Женский')], default='male')
-    age = models.PositiveIntegerField(blank=True, null=True, default=18, verbose_name='Age' )
-    height = models.PositiveIntegerField(blank=True, null=True, default=160,verbose_name="Height")
-    weight = models.PositiveIntegerField(blank=True, null=True, default=60, verbose_name="Weight")
+    age = models.PositiveIntegerField(default=18, verbose_name='Age' )
+    height = models.PositiveIntegerField(default=160,verbose_name="Height")
+    weight = models.PositiveIntegerField(default=60, verbose_name="Weight")
     goal = models.CharField(max_length=20, choices=[('gain', 'Набор'), ('lose', 'Похудение'), ('main', 'Поддержание')], default='maintain')
     calorie_adjustment = models.IntegerField(default=0, verbose_name="Коррекция калорий")
+
+    # методы для получения русского значения поля
+    def get_sex_display(self):
+        return dict(self._meta.get_field('sex').choices).get(self.sex)
+    
+    def get_goal_display(self):
+        return dict(self._meta.get_field('goal').choices).get(self.goal)
 
     # расчет базового метаболизма
     def calculate_daily_calories(self):

@@ -49,7 +49,7 @@ class UserInfoForm(forms.ModelForm):
         model = Profile
         fields = ('sex', 'age','height', 'weight', 'goal', 'calorie_adjustment')
         widgets = {
-            'sex': forms.ChoiceField(choices=[('male', 'Мужской'), ('female', 'Женский')]), 
+            'sex': forms.RadioSelect(choices=[('male', 'Мужской'), ('female', 'Женский')]), 
             'age': forms.NumberInput(attrs={'min': 0, 'max': 120}), 
             'height': forms.NumberInput(attrs={'min': 120, 'max': 300}), 
             'weight': forms.NumberInput(attrs={'min': 25, 'max': 300})

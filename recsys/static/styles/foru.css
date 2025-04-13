@@ -1,3 +1,12 @@
+@font-face {
+    font-family: 'Inter';
+    src: url(../assets/Inter/Inter-Italic-VariableFont_opsz\,wght.ttf);
+}
+body {
+    font-family: 'Inter', sans-serif;
+    color: #0F8EC1;
+}
+
 .nav-button--circle {
     content: "";
     width: 15px;
@@ -9,10 +18,46 @@
     left: -20px;
 }
 
-.user-info {
+.container {
+    display: flex;
+    padding: 20px;
+}
+.left-panel {
+    width: 15%;
+    height: 500px;
+    background: #65FFF2;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    gap: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+}
+.user-info, .goal-selection {
+    padding: 10px;
+}
+
+.products {
+    width: 70%;
+    flex-grow: 1;
+    margin-left: 20px;
+    max-height: 500px;
+    overflow-y: auto;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.product-card {
+    background: #65FFF2;
+    border-radius: 10px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+    padding: 20px;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    width: 200px;
 }

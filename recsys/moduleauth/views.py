@@ -9,21 +9,6 @@ from .models import Profile
 
 
 # Create your views here.
-def index(request):
-    return render(request, "index.html")
-
-def signup(request):
-    return render(request, "signup.html")
-
-def signin(request):
-    return render(request, "signin.html")
-
-def profile(request):
-    return render(request, "profile.html")
-
-def foru(request):
-    return render(request, "foru.html")
-
 def signup_view(request):
     if request.method == 'POST':
         form = UserRegistrationForm(request.POST)
@@ -66,12 +51,3 @@ def profile_view(request):
         form = UserInfoForm(instance=profile)
     
     return render(request, 'profile.html', {'form': form})
-
-@login_required
-def foru_view(request):
-    try:
-        profile = Profile.objects.get(user=request.user)
-    except Profile.DoesNotExist:
-        return redirect('profile')
-    
-    return render(request, 'foru.html', {'profile': profile})

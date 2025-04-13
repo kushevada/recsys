@@ -37,20 +37,48 @@
                     {% endif %}
                 </div>
             </div>
-
-            <div class="user-info">
-                {% if user.is_authenticated %}
-                    {% if user %}
-                        <p>Ваш пол: {{ user.profile.sex }}</p>
-                        <p>Ваш возраст: {{ user.profile.age }}</p>
-                        <p>Ваш рост: {{ user.profile.height }}</p>
-                        <p>Ваш вес: {{ user.profile.weight }}</p>
-                        <p>Ваша цель: {{ user.profile.goal }}</p>
-                    {% else %}
-                        <p>Заполните профиль для получения рекомендаций</p>
-                        <a href="{% url 'profile' %}" class="btn">Перейти к профилю</a>
-                    {% endif %}
-                {% endif %}
+            
+            <div class="container">
+                <div class="left-panel">
+                    <div class="user-info">
+                        {% if user.is_authenticated %}
+                            {% if user %}
+                                <p>Ваш пол: {{ user.profile.get_sex_display }}</p>
+                                <p>Ваш возраст: {{ user.profile.age }}</p>
+                                <p>Ваш рост: {{ user.profile.height }}</p>
+                                <p>Ваш вес: {{ user.profile.weight }}</p>
+                                <p>Ваша цель: {{ user.profile.get_goal_display }}</p>
+                                <a href="{% url 'profile' %}" class="btn">Изменить данные</a>
+                            {% else %}
+                                <p>Заполните профиль для получения рекомендаций</p>
+                                <a href="{% url 'profile' %}" class="btn">Перейти к профилю</a>
+                            {% endif %}
+                        {% endif %}
+                    </div>
+        
+                    <div class="goal-selection">
+                        <form method="post">
+                            <label for="">Выберите цель:</label>
+                            {% csrf_token %}
+                            {{ goal_form.goal }}
+                            <button type="submit" class="btn">Применить цель</button>
+                        </form>
+                    </div>
+                </div>
+                    
+                <div class="products">
+                    {% for product in products %}
+                        <div class="product-card">
+                            <h3>{{ product.name }}</h3>
+                                Белки: {{ product.proteins }}<br>
+                                Жиры: {{ product.fats }}<br>
+                                Углеводы: {{ product.carbohydrates }}<br>
+                                Калорийность: {{ product.caloricity }}
+                        </div>
+                    {% empty %}
+                        <p>Нет продуктов для вашей цели</p>
+                    {% endfor %}
+                </div>
             </div>
 
         </div>
