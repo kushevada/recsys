@@ -43,11 +43,14 @@
                     <div class="user-info">
                         {% if user.is_authenticated %}
                             {% if user %}
-                                <p>Ваш пол: {{ user.profile.get_sex_display }}</p>
-                                <p>Ваш возраст: {{ user.profile.age }}</p>
-                                <p>Ваш рост: {{ user.profile.height }}</p>
-                                <p>Ваш вес: {{ user.profile.weight }}</p>
-                                <p>Ваша цель: {{ user.profile.get_goal_display }}</p>
+                                <p>Ваши данные: </p>
+                                <ul>
+                                    <li>Пол: {{ user.profile.get_sex_display }}</li>
+                                    <li>Возраст: {{ user.profile.age }} лет</li>
+                                    <li>Рост: {{ user.profile.height }} см</li>
+                                    <li>Вес: {{ user.profile.weight }} кг</li>
+                                    <li>Цель: {{ user.profile.get_goal_display }}</li>
+                                </ul>
                                 <a href="{% url 'profile' %}" class="btn">Изменить данные</a>
                             {% else %}
                                 <p>Заполните профиль для получения рекомендаций</p>
@@ -63,6 +66,20 @@
                             {{ goal_form.goal }}
                             <button type="submit" class="btn">Применить цель</button>
                         </form>
+                    </div>
+
+                    <div class="rec-info">
+                        {% if user.is_authenticated %}
+                            {% if user.profile %}
+                                <p>Базовый метаболизм: {{ macros.calories|floatformat:0 }} ккал</p>
+                                <p>Рекомендуемая норма:</p>
+                                <ul>
+                                    <li>Белки: {{ macros.proteins|floatformat:1 }} г</li>
+                                    <li>Жиры: {{ macros.fats|floatformat:1 }} г</li>
+                                    <li>Углеводы: {{ macros.carbohydrates|floatformat:1 }} г</li>
+                                </ul>
+                            {% endif %}
+                        {% endif %}
                     </div>
                 </div>
                     

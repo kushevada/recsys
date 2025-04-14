@@ -27,7 +27,35 @@ class Profile(models.Model):
             bmr = (10 * self.weight) + (6.25 * self.height) - (5 * self.age) + 5
         else:
             bmr = (10 * self.weight) + (6.25 * self.height) - (5 * self.age) - 161
-        return bmr + self.calorie_adjustment
+        
+        if self.goal == 'gain':
+            adjustment = 500
+        elif self.goal == 'lose':
+            adjustment = -500
+        else:
+            adjustment = 0
+        return bmr + adjustment + self.calorie_adjustment
+    
+    # расчет суточной нормы БЖУ
+    def calculate_daily_pfc(self):
+        if self.goal == 'gain':
+            proteins = self.weight * 2.0
+            fats = self.weight * 1.0
+            carbohydrates = self.weight * 4.0
+        elif self.goal == 'lose':
+            proteins = self.weight * 2.5
+            fats = self.weight * 0.8
+            carbohydrates = self.weight * 2.0
+        else:
+            proteins = self.weight * 1.8
+            fats = self.weight * 0.9
+            carbohydrates = self.weight * 3.0
+        return {
+            'proteins': proteins,
+            'fats': fats,
+            'carbohydrates': carbohydrates,
+            'calories': self.calculate_daily_calories()
+        }
 
     def save(self, *args, **kwargs):
         if self.height < 120 or self.height > 300:

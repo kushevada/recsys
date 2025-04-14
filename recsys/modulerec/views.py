@@ -32,6 +32,8 @@ def foru_view(request):
         profile.save()
         return redirect('foru')
 
+    pfc = profile.calculate_daily_pfc()
+
     if profile.goal == 'gain':
         products = Product.objects.filter(is_for_weight_gain=True)
     elif profile.goal == 'lose':
@@ -42,5 +44,6 @@ def foru_view(request):
     return render(request, 'foru.html', {
             'profile': profile,
             'products': products,
-            'goal_form': form
+            'goal_form': form,
+            'macros': pfc,
         })
