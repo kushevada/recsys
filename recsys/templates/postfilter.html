@@ -1,4 +1,4 @@
-{% load static %}
+{ load static }
 
 <html lang="ru">
 
@@ -52,13 +52,13 @@
                     {% endfor %}
                 </div>
     
-                <!-- <div class="filter">
+                <div class="filter">
                     <form method="get">
                         <label for="">Фильтр</label>
                         {% csrf_token %}
                         {{ recfilt_form.recfilt }}
                     </form>
-                </div> -->
+                </div>
 
                 <div class="content-area">
                     {% for category in categories %}

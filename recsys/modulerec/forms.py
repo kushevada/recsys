@@ -5,6 +5,7 @@ from django.core.exceptions import ValidationError
 
 
 # Create your forms here.
+# форма для выбора цели
 class GoalForm(forms.Form):
     goal = forms.ChoiceField(
         label='Выберите цель',
@@ -14,3 +15,13 @@ class GoalForm(forms.Form):
             ('main', 'Поддержание веса')
         ],
         widget=forms.RadioSelect)
+    
+# class RecFilterForm(forms.Form):
+#     filter = forms.ChoiceField(
+#         label='Фильтр',
+#         choices=[
+#             ('excluded', 'Исключенные'),
+#             ('allowed', 'Разрешенные'),
+#             ('recommended', 'Рекомендованные')
+#         ],
+#         widget=forms.RadioSelect)

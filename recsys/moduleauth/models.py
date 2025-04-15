@@ -21,7 +21,7 @@ class Profile(models.Model):
     def get_goal_display(self):
         return dict(self._meta.get_field('goal').choices).get(self.goal)
 
-    # расчет базового метаболизма
+    # расчет суточной нормы ккал
     def calculate_daily_calories(self):
         if self.sex == 'male':
             bmr = (10 * self.weight) + (6.25 * self.height) - (5 * self.age) + 5

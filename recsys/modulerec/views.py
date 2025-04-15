@@ -3,6 +3,7 @@ from .models import Category, Product
 from moduleauth.models import Profile
 from django.contrib.auth.decorators import login_required
 from .forms import GoalForm
+# from .forms import RecFilterForm
 
 
 # Create your views here.
@@ -14,9 +15,15 @@ def foru(request):
     return render(request, 'foru.html')
 
 def catalog_view(request):
+    # recfilt = RecFilterForm(request.POST or None)
+
     categories = Category.objects.all()
     products = Product.objects.all()
-    return render(request, 'catalog.html', {'categories': categories, 'products': products})
+    return render(request, 'catalog.html', {
+        'categories': categories, 
+        'products': products,
+        # 'recfilt_form': recfilt,
+        })
 
 @login_required
 def foru_view(request):
@@ -25,6 +32,7 @@ def foru_view(request):
     except Profile.DoesNotExist:
         return redirect('profile')
 
+    # выбор цели
     form = GoalForm(request.POST or None)
     
     if request.method == 'POST' and form.is_valid():
@@ -32,8 +40,10 @@ def foru_view(request):
         profile.save()
         return redirect('foru')
 
+    # расчет суточной нормы БЖУ и ккал
     pfc = profile.calculate_daily_pfc()
 
+    # парсинг с фильтром по цели
     if profile.goal == 'gain':
         products = Product.objects.filter(is_for_weight_gain=True)
     elif profile.goal == 'lose':
@@ -41,9 +51,11 @@ def foru_view(request):
     else:
         products = Product.objects.filter(is_for_weight_main=True)
     
+
+
     return render(request, 'foru.html', {
-            'profile': profile,
-            'products': products,
-            'goal_form': form,
-            'macros': pfc,
-        })
+        'profile': profile,
+        'products': products,
+        'goal_form': form,
+        'macros': pfc,
+    })
