@@ -45,10 +45,21 @@
                     {{ form.as_p }}
                     <button type="submit" class="save-btn">Обновить данные</button>
                 </form>
-            </div>
 
-            <div class="move-to-filter">
-
+                <div class="excluded-products">
+                    <h2>Исключённые продукты</h2>
+                    <ul>{% for product in request.user.profile.excluded_products.all %}
+                        <li>{{ product.name }}
+                            <form method="post" action="{% url 'include_product' product.id %}" style="display:inline;">
+                                {% csrf_token %}
+                                <button type="submit">Убрать</button>
+                            </form>
+                        </li>
+                        {% empty %}
+                            <li>Нет исключённых продуктов.</li>
+                        {% endfor %}
+                    </ul>
+                </div>
             </div>
 
         </div>

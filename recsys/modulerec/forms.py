@@ -1,7 +1,6 @@
 from django import forms
-from django.contrib.auth.models import User
+from .models import Product
 from moduleauth.models import Profile
-from django.core.exceptions import ValidationError
 
 
 # Create your forms here.
@@ -16,12 +15,15 @@ class GoalForm(forms.Form):
         ],
         widget=forms.RadioSelect)
     
-# class RecFilterForm(forms.Form):
-#     filter = forms.ChoiceField(
-#         label='Фильтр',
-#         choices=[
-#             ('excluded', 'Исключенные'),
-#             ('allowed', 'Разрешенные'),
-#             ('recommended', 'Рекомендованные')
-#         ],
-#         widget=forms.RadioSelect)
+# форма для отметок продуктов
+class ExcludedProductsForm(forms.ModelForm):
+    excluded_products = forms.ModelMultipleChoiceField(
+        queryset=Product.objects.all(),
+        widget=forms.CheckboxSelectMultiple,
+        required=False,
+        label="Продукты, которые нельзя употреблять"
+    )
+
+    class Meta:
+        model = Profile
+        fields = ['excluded_products']

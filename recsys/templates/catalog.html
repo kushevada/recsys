@@ -18,6 +18,7 @@
         </div>
 
         <div id="body">
+
             <div class="navbar">
                 <a href="{% url 'index' %}" class="nav-button">Главная</a>
                 <a href="{% url 'catalog' %}" class="nav-button">Каталог<div class="nav-button--circle"></div></a>
@@ -38,6 +39,9 @@
                 </div>
             </div>
 
+            <button id="toggleFormsButton">Показать/Скрыть формы</button>
+            <script src="{% static 'utils/displayetoggle.js' %}"></script>
+
             <script src="{% static 'utils/catalog.js' %}"></script>
             <div class="catalog-content">
                 <div class="catalog-navbar">
@@ -45,20 +49,22 @@
                         <button data-target="#{{ category.name }}" class="product-button">
                             {% if category.ru_name %}
                                 {{ category.ru_name }}
+                                {% if user.is_authenticated %}
+                                    <form method="post" action="{% url 'include_category' category.id %}">
+                                        {% csrf_token %}
+                                        <button type="submit" class="include-btn">+</button>
+                                    </form>
+                                    <form method="post" action="{% url 'exclude_category' category.id %}">
+                                        {% csrf_token %}
+                                        <button type="submit" class="exclude-btn">–</button>
+                                    </form>
+                                {% endif %}
                             {% else %}
                                 {{ category.name }}
                             {% endif %}
                         </button>
                     {% endfor %}
                 </div>
-    
-                <!-- <div class="filter">
-                    <form method="get">
-                        <label for="">Фильтр</label>
-                        {% csrf_token %}
-                        {{ recfilt_form.recfilt }}
-                    </form>
-                </div> -->
 
                 <div class="content-area">
                     {% for category in categories %}
@@ -68,6 +74,21 @@
                                     {% if product.category == category %}
                                         <div class="product-card">
                                             <h3>{{ product.name }}</h3>
+                                            <div class="forms-container" style="display: none;">
+                                                {% if user.is_authenticated %}
+                                                    {% if product in request.user.profile.excluded_products.all %}
+                                                        <form method="post" action="{% url 'include_product' product.id %}" style="display:inline;">
+                                                            {% csrf_token %}
+                                                            <button type="submit" class="include-btn">+</button>
+                                                        </form>
+                                                    {% else %}
+                                                        <form method="post" action="{% url 'exclude_product' product.id %}" style="display:inline;">
+                                                            {% csrf_token %}
+                                                            <button type="submit" class="exclude-btn">–</button>
+                                                        </form>
+                                                    {% endif %}
+                                                {% endif %}
+                                            </div>                                                                       
                                             <h4>Состав: <br>
                                                 Белки: {{ product.proteins }}<br>
                                                 Жиры: {{ product.fats }}<br>

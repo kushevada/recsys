@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
+from modulerec.models import Product, Category
 
 
 # Create your models here.
@@ -13,6 +14,8 @@ class Profile(models.Model):
     weight = models.PositiveIntegerField(default=60, verbose_name="Weight")
     goal = models.CharField(max_length=20, choices=[('gain', 'Набор'), ('lose', 'Похудение'), ('main', 'Поддержание')], default='maintain')
     calorie_adjustment = models.IntegerField(default=0, verbose_name="Коррекция калорий")
+    excluded_products = models.ManyToManyField(Product, blank=True, related_name='excluded_by_profiles')
+    excluded_categories = models.ManyToManyField(Category, blank=True, related_name='excluded_by_profiles')
 
     # методы для получения русского значения поля
     def get_sex_display(self):
