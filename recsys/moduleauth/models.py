@@ -11,7 +11,7 @@ class Profile(models.Model):
     sex = models.CharField(max_length=6, choices=[('male', 'Мужской'), ('female', 'Женский')], default='male')
     age = models.PositiveIntegerField(default=18, verbose_name='Age' )
     height = models.PositiveIntegerField(default=160,verbose_name="Height")
-    weight = models.PositiveIntegerField(default=60, verbose_name="Weight")
+    weight = models.FloatField(default=60.0, verbose_name="Weight")
     goal = models.CharField(max_length=20, choices=[('gain', 'Набор'), ('lose', 'Похудение'), ('main', 'Поддержание')], default='maintain')
     calorie_adjustment = models.IntegerField(default=0, verbose_name="Коррекция калорий")
     excluded_products = models.ManyToManyField(Product, blank=True, related_name='excluded_by_profiles')
@@ -63,9 +63,14 @@ class Profile(models.Model):
     def save(self, *args, **kwargs):
         if self.height < 120 or self.height > 300:
             raise ValidationError("Значение роста должно находиться между 120 и 300")
-        if self.weight < 25 or self.weight > 300:
+        if self.weight < 25.0 or self.weight > 300.0:
             raise ValidationError("Значение веса должно находиться между 25 и 300")
         super().save(*args, **kwargs)
 
     def __str__(self):
         return f"{self.user.username}"
+    
+class WeightHistory(models.Model):
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='weight_history')
+    date = models.DateField(auto_now_add=True)
+    weight = models.FloatField()

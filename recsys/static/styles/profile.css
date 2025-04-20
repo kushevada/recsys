@@ -54,3 +54,9 @@
     color: #0F8EC1;
     font-family: 'Inter', sans-serif;
 }
+
+.graph {
+    display: flex;
+    width: 400px;
+    height: auto;
+}

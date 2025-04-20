@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'modulerec.apps.RecConfig',
     'moduleauth.apps.AuthConfig',
+    'modulerate.apps.ModulerateConfig',
 ]
 
 MIDDLEWARE = [

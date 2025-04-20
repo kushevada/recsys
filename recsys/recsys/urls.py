@@ -23,4 +23,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('modulerec.urls')),
     path('auth/', include('moduleauth.urls')),
+    path('rate/', include('modulerate.urls')),
 ]

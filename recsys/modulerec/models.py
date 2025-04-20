@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models import Avg
 
 
 # Create your models here.
@@ -19,9 +20,12 @@ class Product(models.Model):
     is_for_weight_main = models.BooleanField(default=False)
     is_for_weight_gain = models.BooleanField(default=False)
     is_for_weight_loss = models.BooleanField(default=False)
-
+    
     class Meta:
         unique_together = ['name', 'category']
 
     def __str__(self):
         return self.name
+    
+    def average_rating(self):
+        return self.ratings.aggregate(Avg('value'))['value__avg'] or 0

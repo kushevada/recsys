@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from .models import Profile
+from .models import Profile, WeightHistory
 from django.core.exceptions import ValidationError
 
 
@@ -41,7 +41,7 @@ class UserInfoForm(forms.ModelForm):
     sex = forms.ChoiceField(label='Пол', required=True, choices=[('male', 'Мужской'), ('female', 'Женский')])
     age = forms.IntegerField(label='Возраст', required=True)
     height = forms.IntegerField(label='Рост', required=True)
-    weight = forms.IntegerField(label='Вес', required=True)
+    weight = forms.FloatField(label='Вес', required=True)
     goal = forms.ChoiceField(label='Цель', choices=Profile._meta.get_field('goal').choices, widget=forms.RadioSelect)
 
     class Meta:
@@ -51,7 +51,7 @@ class UserInfoForm(forms.ModelForm):
             'sex': forms.RadioSelect(choices=[('male', 'Мужской'), ('female', 'Женский')]), 
             'age': forms.NumberInput(attrs={'min': 0, 'max': 120}), 
             'height': forms.NumberInput(attrs={'min': 120, 'max': 300}), 
-            'weight': forms.NumberInput(attrs={'min': 25, 'max': 300})
+            'weight': forms.NumberInput(attrs={'min': 25.0, 'max': 300.0})
         }
 
     def clean_height(self):
@@ -65,3 +65,11 @@ class UserInfoForm(forms.ModelForm):
         if weight < 25 or weight > 300:
             raise forms.ValidationError('Некорректные данные')
         return weight
+    
+class WeightHistoryForm(forms.ModelForm):
+    class Meta:
+        model = WeightHistory
+        fields = ['weight']
+        widgets = {
+            'weight': forms.NumberInput(attrs={'min': 25.0, 'max': 300.0, 'step': '0.1'})
+        }

@@ -48,7 +48,6 @@
                     {% for category in categories %}
                         <button data-target="#{{ category.name }}" class="product-button">
                             {% if category.ru_name %}
-                                {{ category.ru_name }}
                                 {% if user.is_authenticated %}
                                     <form method="post" action="{% url 'include_category' category.id %}">
                                         {% csrf_token %}
@@ -74,6 +73,8 @@
                                     {% if product.category == category %}
                                         <div class="product-card">
                                             <h3>{{ product.name }}</h3>
+                                            {{ category.ru_name }}
+                                            <p>Рейтинг: {{ product.average_rating|floatformat:1 }}</p>
                                             <div class="forms-container" style="display: none;">
                                                 {% if user.is_authenticated %}
                                                     {% if product in request.user.profile.excluded_products.all %}

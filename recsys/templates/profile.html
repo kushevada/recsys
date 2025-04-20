@@ -62,6 +62,37 @@
                 </div>
             </div>
 
+            <div class="graph">
+                <form method="post">
+                    {% csrf_token %}
+                    {{ weight_form.weight.label_tag }} {{ weight_form.weight }}
+                    <button type="submit" name="save_weight">Добавить изменения</button>
+                </form>
+                <canvas id="weightChart"></canvas>
+                <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                <script>
+                    const ctx = document.getElementById('weightChart').getContext('2d');
+                    const chart = new Chart(ctx, {
+                        type: 'line',
+                        data: {
+                            labels: {{ dates|safe }},
+                            datasets: [{
+                                label: 'Вес (кг)',
+                                data: {{ weights|safe }},
+                                borderColor: 'blue',
+                                fill: false
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            scales: {
+                                y: { beginAtZero: false }
+                            }
+                        }
+                    });
+                </script>
+            </div>
+
         </div>
 
     </body>
