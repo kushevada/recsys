@@ -87,6 +87,7 @@
                     {% for product in products %}
                         <div class="product-card">
                             <h3>{{ product.name }}</h3>
+                                <p>Рейтинг: {{ product.average_rating|floatformat:1 }}</p>
                                 Белки: {{ product.proteins }}<br>
                                 Жиры: {{ product.fats }}<br>
                                 Углеводы: {{ product.carbohydrates }}<br>

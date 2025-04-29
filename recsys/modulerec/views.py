@@ -17,10 +17,25 @@ def foru(request):
 def catalog_view(request):
     categories = Category.objects.all()
     products = Product.objects.all()
+    profile = None
+    if request.user.is_authenticated:
+        try:
+            profile = Profile.objects.get(user=request.user)
+        except Profile.DoesNotExist:
+            profile = None
+
+        if profile:
+            if profile.goal == 'gain':
+                products = products.filter(is_for_weight_gain=True)
+            elif profile.goal == 'lose':
+                products = products.filter(is_for_weight_loss=True)
+            else:
+                products = products.filter(is_for_weight_main=True)
 
     return render(request, 'catalog.html', {
         'categories': categories, 
         'products': products,
+        'profile': profile,
         })
 
 # кнопки исключений
@@ -90,4 +105,5 @@ def foru_view(request):
         'products': products,
         'goal_form': form,
         'macros': pfc,
+        'user_goal': profile.goal,
     })

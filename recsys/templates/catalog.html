@@ -74,7 +74,7 @@
                                     {% if product.category == category %}
                                         <div class="product-card">
                                             <h3>{{ product.name }}</h3>
-                                            <p>Рейтинг: {{ product.average_rating|floatformat:1 }}</p>
+                                            <a href="{% url 'product_detail' product.id %}"><p>Рейтинг: {{ product.average_rating|floatformat:1 }}</p></a>
                                             <div class="forms-container" style="display: none;">
                                                 {% if user.is_authenticated %}
                                                     {% if product in request.user.profile.excluded_products.all %}
